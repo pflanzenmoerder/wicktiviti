@@ -1,0 +1,45 @@
+<html
+        xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+    <title></title>
+</head>
+<body>
+<wicket:panel>
+    <section id="tables">
+        <div class="page-header">
+            <h1>Tasks
+                <small>Select task</small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="span4 columns">
+                <h2>Task stuff</h2>
+                <p>
+                    Whatever
+                </p>
+            </div>
+            <div class="span12 columns">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <wicket:message key="taskIdHeader"/>
+                            </th>
+                            <th>
+                                <wicket:message key="taskNameHeader"/>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr wicket:id="taskList">
+                            <td><span wicket:id="taskId"/></td>
+                            <td><a wicket:id="taskLink"><span wicket:id="taskName">Test ID</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</wicket:panel>
+</body>
+</html>

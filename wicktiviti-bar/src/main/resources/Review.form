@@ -1,0 +1,39 @@
+<html
+        xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <section id="forms">
+        <div class="page-header">
+            <h1>Create new process</h1>
+        </div>
+        <div class="row">
+            <div class="span4 columns">
+                <h2>Enter Data</h2>
+
+                <p>Please enter required data to create a new process.</p>
+            </div>
+            <div class="span12 columns">
+                <form wicket:id="form">
+                    <fieldset>
+                        <legend>
+                            <wicket:message key="panelTitle"/>
+                        </legend>
+                        <div class="clearfix">
+                            <label for="approve">
+                                <wicket:message key="title"/>
+                            </label>
+                            <input id="approve" type="checkbox" wicket:id="approve"/>
+                        </div>
+                        <!-- /clearfix -->
+                        <div class="actions">
+                            <input type="submit" class="btn primary" value="Save Changes" wicket:id="submit">&nbsp;
+                            <button type="reset" class="btn">Cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+</wicket:panel>
+</body>
+</html>

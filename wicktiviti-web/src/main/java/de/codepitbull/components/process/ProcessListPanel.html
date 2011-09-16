@@ -1,0 +1,45 @@
+<html
+        xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+    <title></title>
+</head>
+<body>
+<wicket:panel>
+    <section id="tables">
+        <div class="page-header">
+            <h1>Processes
+                <small>Select process</small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="span4 columns">
+                <h2>Process stuff</h2>
+                <p>
+                    Whatever
+                </p>
+            </div>
+            <div class="span12 columns">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <wicket:message key="processIdHeader"/>
+                            </th>
+                            <th>
+                                <wicket:message key="processNameHeader"/>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr wicket:id="processList">
+                            <td><span wicket:id="processId"/></td>
+                            <td><a wicket:id="processLink"><span wicket:id="processName">Test ID</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</wicket:panel>
+</body>
+</html>
