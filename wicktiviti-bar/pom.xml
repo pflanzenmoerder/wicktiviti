@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bugtiviti-bar</artifactId>
+    <artifactId>wicktiviti-bar</artifactId>
     <build>
         <plugins>
             <plugin>
