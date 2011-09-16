@@ -2,6 +2,10 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>Hi</comment>
+    <entry key="taskSelectionTitle">Task</entry>
+    <entry key="taskSelectionSubTitle">Select a task to work on</entry>
+    <entry key="descriptionTitle">Tasks</entry>
+    <entry key="descriptionContent">Select a task on the right to work on it.</entry>
 	<entry key="taskIdHeader">#</entry>
     <entry key="taskNameHeader">Name</entry>
 </properties>

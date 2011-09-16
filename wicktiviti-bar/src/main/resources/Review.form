@@ -8,19 +8,19 @@
         </div>
         <div class="row">
             <div class="span4 columns">
-                <h2>Enter Data</h2>
-
-                <p>Please enter required data to create a new process.</p>
+                <h2>A task form</h2>
+                <p>This task form is straight out of Activiti.</p>
+                <p>Select if you approve or not and hit submit.</p>
             </div>
             <div class="span12 columns">
                 <form wicket:id="form">
                     <fieldset>
                         <legend>
-                            <wicket:message key="panelTitle"/>
+                            Approval Task
                         </legend>
                         <div class="clearfix">
                             <label for="approve">
-                                <wicket:message key="title"/>
+                                Approve?
                             </label>
                             <input id="approve" type="checkbox" wicket:id="approve"/>
                         </div>

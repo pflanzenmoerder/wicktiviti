@@ -17,15 +17,10 @@
     </licenses>
     <parent>
         <groupId>de.codepitbull.bpmn</groupId>
-        <artifactId>bugtiviti-parent</artifactId>
+        <artifactId>wicktiviti-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <dependencies>
-        <dependency>
-            <groupId>de.codepitbull.bpmn</groupId>
-            <artifactId>bugtiviti-bpmn</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 		<!-- WICKET DEPENDENCIES -->
         <dependency>
             <groupId>org.apache.wicket</groupId>

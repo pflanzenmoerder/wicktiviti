@@ -12,17 +12,8 @@
 	<context:annotation-config />
 	<tx:annotation-driven transaction-manager="transactionmanager" />
 
-	<bean id="transactionmanager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean> 
-
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="false" />
-			</bean>
-		</property>
+	<bean id="transactionmanager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
@@ -30,12 +21,9 @@
 		<property name="transactionManager" ref="transactionmanager" />
 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="jobExecutorActivate" value="false" />
-		<property name="jpaEntityManagerFactory" ref="entityManagerFactory" />
-		<property name="jpaHandleTransaction" value="true" />
-		<property name="jpaCloseEntityManager" value="true" />
 		<property name="deploymentResources">
             <array>
-                <value>file:/Users/jmader/development/vcs/github/activiti-wicket/wicktiviti-bar/target/*.bar</value>
+                <value>file:/Users/jmader/development/vcs/github/wicktiviti/wicktiviti-bar/target/*.bar</value>
             </array>
         </property>
 	</bean>

@@ -8,18 +8,19 @@
         </div>
         <div class="row">
             <div class="span4 columns">
-                <h2>Enter Data</h2>
-                <p>Please enter required data to create a new process.</p>
+                <h2>Example process</h2>
+                <p>Everything in here is actually part of an Activiti form.</p>
+                <p>Create a new process by filling out stuff on the right.</p>
             </div>
             <div class="span12 columns">
                 <form wicket:id="form">
                     <fieldset>
                         <legend>
-                            <wicket:message key="panelTitle"/>
+                            Create a new Process
                         </legend>
                         <div class="clearfix">
                             <label for="xlInput">
-                                <wicket:message key="title"/>
+                                A generic input field
                             </label>
 
                             <div class="input">
@@ -30,7 +31,7 @@
                         <!-- /clearfix -->
                         <div class="clearfix">
                             <label for="xlInput">
-                                <wicket:message key="description"/>
+                                And another one
                             </label>
 
                             <div class="input">
