@@ -20,7 +20,9 @@
 				Somebody has to review the newly created issue to verify it's validity.
 			</documentation>
 			<extensionElements>
-                <activiti:formProperty id="approve" type="boolean" variable="accepted" />
+                <activiti:formProperty id="title" variable="title" writable="false" />
+                <activiti:formProperty id="approve" type="boolean" variable="accepted" required="true"/>
+                <activiti:formProperty id="justification" type="string" variable="accepted" required="true"/>
 			</extensionElements>
 		</userTask>
 

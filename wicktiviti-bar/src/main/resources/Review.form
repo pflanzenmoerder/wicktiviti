@@ -16,13 +16,24 @@
                 <form wicket:id="form">
                     <fieldset>
                         <legend>
-                            Approval Task
+                            Process title: <span wicket:id="title"/>
                         </legend>
                         <div class="clearfix">
                             <label for="approve">
                                 Approve?
                             </label>
                             <input id="approve" type="checkbox" wicket:id="approve"/>
+                        </div>
+                        <!-- /clearfix -->
+                        <div class="clearfix">
+                            <label for="xlInput">
+                                Please give a justification
+                            </label>
+
+                            <div class="input">
+                                <input class="xlarge" id="xlInput" name="xlInput" size="30" type="text"
+                                       wicket:id="justification"/>
+                            </div>
                         </div>
                         <!-- /clearfix -->
                         <div class="actions">

@@ -5,6 +5,7 @@ import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.impl.form.*;
 import org.apache.wicket.markup.IMarkupCacheKeyProvider;
 import org.apache.wicket.markup.IMarkupResourceStreamProvider;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -37,22 +38,29 @@ public abstract class AbstractDynamicActivitiPanel extends Panel implements IMar
 
     protected void fillForm(Form<Map<String, Object>> form, List<FormProperty> formProperties) {
         for (FormProperty formProperty : formProperties) {
-            if(formProperty.getId().equals("userId")) {
-                form.getModelObject().put("userId", ((ActivitiAuthenticatedWebSession) WebSession.get()).getUser().getId());
-            }
-            else if (formProperty.getType() instanceof LongFormType) {
-                form.add(new TextField<Long>(formProperty.getId()));
-            } else if (formProperty.getType() instanceof StringFormType) {
-                form.add(new TextField<String>(formProperty.getId()));
-            } else if (formProperty.getType() instanceof DateFormType) {
-                form.add(new TextField<Date>(formProperty.getId()));
-            } else if (formProperty.getType() instanceof BooleanFormType) {
-                form.add(new CheckBox(formProperty.getId()));
-            } else if (formProperty.getType() instanceof EnumFormType) {
-                throw new RuntimeException("Enum not supported");
+            if(formProperty.isWritable()) {
+                if(formProperty.getId().equals("userId")) {
+                    form.getModelObject().put("userId", ((ActivitiAuthenticatedWebSession) WebSession.get()).getUser().getId());
+                }
+                else if (formProperty.getType() instanceof LongFormType) {
+                    form.add(new TextField<Long>(formProperty.getId()).setRequired(formProperty.isRequired()));
+                } else if (formProperty.getType() instanceof StringFormType) {
+                    form.add(new TextField<String>(formProperty.getId()).setRequired(formProperty.isRequired()));
+                } else if (formProperty.getType() instanceof DateFormType) {
+                    form.add(new TextField<Date>(formProperty.getId()).setRequired(formProperty.isRequired()));
+                } else if (formProperty.getType() instanceof BooleanFormType) {
+                    form.add(new CheckBox(formProperty.getId()).setRequired(formProperty.isRequired()));
+                } else if (formProperty.getType() instanceof EnumFormType) {
+                    throw new RuntimeException("Enum not supported");
+                }
+                else {
+                    throw new RuntimeException("Unknown formtype for"+formProperty);
+                }
             }
             else {
-                throw new RuntimeException("Unknown formtype for"+formProperty);
+                //remove readonly properties from the list so they don't get submitted
+                form.getModelObject().remove(formProperty.getId());
+                form.add(new Label(formProperty.getId(), formProperty.getValue()));
             }
         }
     }
