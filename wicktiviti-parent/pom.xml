@@ -20,14 +20,10 @@
 		<jta.version>1.1</jta.version>
 		<h2.version>1.2.132</h2.version>
 		<dbcp.version>1.4</dbcp.version>
-	</properties>
+        <aspectjrt.version>1.6.11</aspectjrt.version>
+        <openjpa.version>2.1.0</openjpa.version>
+    </properties>
 	<repositories>
-		<repository>
-			<id>wiquery repository</id>
-			<name>wiQuery repository</name>
-			<url>http://wiquery.googlecode.com/svn/repo/</url>
-			<layout>default</layout>
-		</repository>
 		<repository>
 			<id>activiti</id>
 			<name>Activiti Repository</name>
@@ -64,11 +60,6 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<dependency>
-				<groupId>org.odlabs.wiquery</groupId>
-				<artifactId>wiquery</artifactId>
-				<version>${wiquery.version}</version>
-			</dependency>
 			<!-- SPRING DEPENDENCIES -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -90,7 +81,7 @@
 				<artifactId>spring-aop</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-            		<dependency>
+            <dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aspects</artifactId>
 				<version>${spring.version}</version>
@@ -103,11 +94,6 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -180,32 +166,16 @@
 				<artifactId>activiti-spring</artifactId>
 				<version>${activiti.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>javax.transaction</groupId>
-				<artifactId>jta</artifactId>
-				<version>${jta.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>commons-dbcp</groupId>
-				<artifactId>commons-dbcp</artifactId>
-				<version>${dbcp.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.subethamail</groupId>
-				<artifactId>subethasmtp-wiser</artifactId>
-				<version>${subethamail.version}</version>
-				<scope>test</scope>
-			</dependency>
+			<!-- ASPECTJ -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectjrt.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>org.apache.openjpa</groupId>
 				<artifactId>openjpa-persistence</artifactId>
-				<version>2.1.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.openjpa</groupId>
-				<artifactId>openjpa-persistence-jdbc</artifactId>
-				<version>2.1.0</version>
+				<version>${openjpa.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -216,20 +186,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 					<optimize>true</optimize>
 					<debug>true</debug>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
 		</plugins>
