@@ -2,17 +2,15 @@ package de.codepitbull.models;
 
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
+@Configurable
 @SuppressWarnings("serial")
 public class TaskModel extends LoadableDetachableModel<Task> {
-    @SpringBean
-	private TaskService taskService;
-    {
-		Injector.get().inject(this);
-    }
+    @Autowired
+	private transient TaskService taskService;
 
     private String taskId;
 

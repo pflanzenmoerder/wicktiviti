@@ -16,20 +16,23 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.resource.IResourceStream;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Configurable(preConstruction = true)
 public class ActivitiTaskFormPanel extends AbstractDynamicActivitiPanel {
 
-    @SpringBean
-    private FormService formService;
+    @Autowired
+    private transient FormService formService;
 
-    @SpringBean
-    private TaskService taskService;
+    @Autowired
+    private transient TaskService taskService;
 
-    @SpringBean
-    private RepositoryService repositoryService;
+    @Autowired
+    private transient RepositoryService repositoryService;
 
     public ActivitiTaskFormPanel(final String id, final IModel<Task> model) {
         super(id, model);

@@ -15,19 +15,23 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.resource.IResourceStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Configurable(preConstruction = true)
+@SuppressWarnings("serial")
 public class ActivitiStartProcessFormPanel extends AbstractDynamicActivitiPanel {
 
     private static final Logger LOG = LoggerFactory.getLogger(ActivitiStartProcessFormPanel.class);
 
-    @SpringBean
-    private FormService formService;
+    @Autowired
+    private transient FormService formService;
 
-    @SpringBean
-    private RepositoryService repositoryService;
+    @Autowired
+    private transient RepositoryService repositoryService;
 
     public ActivitiStartProcessFormPanel(final String id, final IModel<ProcessDefinition> model) {
         super(id, model);

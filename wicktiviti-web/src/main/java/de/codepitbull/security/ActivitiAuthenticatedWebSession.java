@@ -1,31 +1,29 @@
 package de.codepitbull.security;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("serial")
+@Configurable
 public class ActivitiAuthenticatedWebSession extends AuthenticatedWebSession {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ActivitiAuthenticatedWebSession.class);
-	@SpringBean
-	private IdentityService identityService;
+	@Autowired
+	private transient IdentityService identityService;
 
 	private User user;
-	{
-		Injector.get().inject(this);
-	}
 
 	public ActivitiAuthenticatedWebSession(Request request) {
 		super(request);

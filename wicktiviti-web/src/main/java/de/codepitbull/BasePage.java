@@ -12,7 +12,6 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 @AuthorizeInstantiation(value = { Groups.DEVELOPER, Groups.TESTER })
 public abstract class BasePage extends WebPage {
 
-
     protected BasePage() {
 		add(new Label("userId", new UserIdModel()));
     }

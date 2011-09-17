@@ -1,8 +1,7 @@
 package de.codepitbull.models;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
-
 import de.codepitbull.security.ActivitiAuthenticatedWebSession;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 
 @SuppressWarnings("serial")
 public class UserIdModel extends AbstractReadOnlyModel<String> {

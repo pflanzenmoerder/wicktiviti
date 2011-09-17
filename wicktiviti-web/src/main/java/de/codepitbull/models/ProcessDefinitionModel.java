@@ -2,9 +2,9 @@ package de.codepitbull.models;
 
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,12 +13,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  * Time: 18:16
  * To change this template use File | Settings | File Templates.
  */
+@Configurable
 public class ProcessDefinitionModel extends LoadableDetachableModel<ProcessDefinition>{
-    @SpringBean
-    private RepositoryService repositoryService;
-    {
-        Injector.get().inject(this);
-    }
+    @Autowired
+    private transient RepositoryService repositoryService;
 
     private String processDefinitionId;
 

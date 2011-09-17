@@ -22,7 +22,8 @@ import org.activiti.engine.identity.User;
 import org.apache.wicket.authroles.authentication.panel.SignInPanel;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 
 /**
@@ -30,11 +31,13 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  * 
  * @author Jonathan Locke
  */
-@SuppressWarnings("serial")
-public final class LoginPage extends WebPage {
 
-    @SpringBean
-    IdentityService identityService;
+@Configurable
+@SuppressWarnings("serial")
+public class LoginPage extends WebPage {
+
+    @Autowired
+    private transient IdentityService identityService;
 
 	/**
 	 * Constructor
@@ -43,6 +46,13 @@ public final class LoginPage extends WebPage {
 	 *            The page parameters
 	 */
 	public LoginPage(final PageParameters parameters) {
+		add(new SignInPanel("signInPanel"));
+	}
+
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+
          if (identityService.createUserQuery().list().size() == 0) {
 			// TODO: remove asap
 			User newUser = identityService.newUser("jochen");
@@ -68,6 +78,5 @@ public final class LoginPage extends WebPage {
 			identityService.createMembership("spock", "DEVELOPER");
 			identityService.createMembership("bones", "TESTER");
 		}
-		add(new SignInPanel("signInPanel"));
-	}
+    }
 }
