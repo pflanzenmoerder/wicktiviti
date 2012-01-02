@@ -27,9 +27,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>	
 	<filter-mapping>
 		<filter-name>wicket.ajaxtest</filter-name>
 		<url-pattern>/*</url-pattern>

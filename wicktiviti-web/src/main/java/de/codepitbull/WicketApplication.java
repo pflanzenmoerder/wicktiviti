@@ -26,7 +26,6 @@ public class WicketApplication extends AuthenticatedWebApplication {
 	public void init() {
 		super.init();
 		mountPage("overview", MainPage.class);
-		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	}
 
 	@Override

@@ -1,55 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions id="definitions" targetNamespace="http://activiti.org/bpmn20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<process id="demoprocess" name="Demo Process">
-		<startEvent id="theStart" activiti:candidateGroups="DEVELOPER" activiti:formKey="Start.form">
-			<documentation>
-				The start event requires a filled form.
-			</documentation>
-			<extensionElements>
-				<activiti:formProperty id="title" name="Issue Title" variable="title" type="string" required="true" />
-				<activiti:formProperty id="description" name="Issue Description" variable="description" type="string" required="true" />
-				<activiti:formProperty id="userId" name="ID of the user starting the process" variable="userIdOfStartingUser" type="string" required="true" />
-			</extensionElements>
-		</startEvent>
-
-		<sequenceFlow id="flow" sourceRef="theStart" targetRef="review" />
-
-		<userTask id="review" activiti:candidateGroups="DEVELOPER" activiti:formKey="Review.form">
-			<documentation>
-				Somebody has to review the newly created issue to verify it's validity.
-			</documentation>
-			<extensionElements>
-                <activiti:formProperty id="title" variable="title" writable="false" />
-                <activiti:formProperty id="approve" type="boolean" variable="accepted" required="true"/>
-                <activiti:formProperty id="justification" type="string" variable="accepted" required="true"/>
-			</extensionElements>
-		</userTask>
-
-		<sequenceFlow sourceRef="review" targetRef="exclusiveGateway" />
-
-		<exclusiveGateway id="exclusiveGateway" />
-
-		<sequenceFlow id="flow1_gateway1" sourceRef="exclusiveGateway" targetRef="theEnd">
-			<documentation>
-				Flow taken if the issue has been rejected.
-			</documentation>
-			<conditionExpression xsi:type="tFormalExpression">
-    			<![CDATA[${!accepted}]]>
-			</conditionExpression>
-		</sequenceFlow>
-
-		<sequenceFlow id="flow2_gateway1" sourceRef="exclusiveGateway" targetRef="theEnd">
-			<documentation>
-				Flow taken if the issue has been accepted.
-			</documentation>
-			<conditionExpression xsi:type="tFormalExpression">
-    			<![CDATA[${accepted}]]>
-			</conditionExpression>
-		</sequenceFlow>
-
-		<endEvent id="theEnd" />
-
-	</process>
-
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn20">
+  <process id="demoprocess" name="Demo Process">
+    <startEvent id="startevent1" name="Start" activiti:formKey="Start.form">
+      <extensionElements>
+        <activiti:formProperty id="title" name="Title" type="string" variable="title" required="true" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="description" name="Description" type="string" variable="description" required="true" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Review " activiti:candidateGroups="DEVELOPER" activiti:formKey="Review.form"></userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Review Gateway"></exclusiveGateway>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="exclusivegateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[
+    			${!accepted}
+			]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="exclusivegateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[
+    			${accepted}
+			]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_demoprocess">
+    <bpmndi:BPMNPlane bpmnElement="demoprocess" id="BPMNPlane_demoprocess">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="30" y="200"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55" width="105" x="125" y="190"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40" width="40" x="290" y="197"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="390" y="297"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="65" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="125" y="217"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="230" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="290" y="217"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="310" y="237"></omgdi:waypoint>
+        <omgdi:waypoint x="310" y="314"></omgdi:waypoint>
+        <omgdi:waypoint x="390" y="314"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="330" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="407" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="407" y="297"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </definitions>

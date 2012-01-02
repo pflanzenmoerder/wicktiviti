@@ -33,6 +33,5 @@ public class ProcessListPanel extends Panel {
                     }.add(new Label("processName", processDefinitionListItem.getModelObject().getName())));
                 }
             });
-
     }
 }
