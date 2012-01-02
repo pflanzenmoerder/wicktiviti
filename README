@@ -1,0 +1,12 @@
+The code in this project is the basis of the Wicket/activit-article in the German Java Magazin.
+
+This project is aimed to provide a full integration of Wicket (wicket.apache.org) with Activiti (ww.activiti.org).
+It is currently working but not yet in the state to be considered a full library.
+Missing items:
+- Extract components into a separate library
+- add unit tests (while moving stuff from another project I broke them, will be added soon)
+
+To try it out:
+This is a Maven-Project with no IDE-dependencies. Just check it out into your favorit IDE and build it.
+Run de.codepitbull.Start from the tests-Folder and you are good to go.
+
